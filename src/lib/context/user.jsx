@@ -1,12 +1,7 @@
 import { ID } from "appwrite";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { account } from "../appwrite";
-
-const UserContext = createContext();
-
-export function useUser() {
-  return useContext(UserContext);
-}
+import UserContext from "../../index.js";
 
 export function UserProvider(props) {
   const [user, setUser] = useState(null);
@@ -42,7 +37,7 @@ export function UserProvider(props) {
 
   return (
     <UserContext.Provider value={{ current: user, login, logout, register }}>
-      {props.children}
+      {props}
     </UserContext.Provider>
   );
 }
